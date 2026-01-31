@@ -1,6 +1,8 @@
 using UnityEngine;
 using Dreamteck.Forever;
 using System.Collections.Generic;
+using System.Linq;
+using Player.Core;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,9 +10,10 @@ public class EnemySpawner : MonoBehaviour
     private WaveType waveType;
     private bool isEnemiesSpawned = false;
     [SerializeField] private GameObject enemyPrefab;
-    private List<Vector3> spawnPositions = new List<Vector3>();
     private GameObject tempEnemy;
     private float currentDistance = 1f;
+    private float towardPlayerLerpRate = 0.03f;
+    private List<EnemyTest> spawnedEnemies = new List<EnemyTest>();
 
     private void Start()
     {
@@ -21,7 +24,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnSegmentActivated(int obj)
     {
-        Debug.Log("hyeo");
         if(!isEnemiesSpawned)
         {
             switch(waveType)
@@ -91,6 +93,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             }
 
+            spawnedEnemies = gameObject.GetComponentsInChildren<EnemyTest>().ToList();
             isEnemiesSpawned = true;
         }
         
@@ -100,11 +103,19 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        
+        var distance = Vector3.Distance(transform.position, PlayerBehaviour.Instance.transform.position);
         if(isEnemiesSpawned)
         {
             transform.position = segment.path.spline.EvaluatePosition(currentDistance);
             currentDistance -= Time.deltaTime * 0.2f;
+        } 
+        
+        if(distance <= 10.0f && isEnemiesSpawned)
+        {   
+            foreach(EnemyTest enemy in spawnedEnemies)
+            {
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), towardPlayerLerpRate);
+            }
         }
     }
 }
