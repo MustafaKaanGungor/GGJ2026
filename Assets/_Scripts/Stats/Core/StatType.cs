@@ -1,8 +1,8 @@
 // ReSharper disable once CheckNamespace
 
-namespace Mask.Core
+namespace Stats.Core
 {
-    public enum MaskType : byte
+    public enum StatType : byte
     {
         // @formatter:off
         Default                         = 0,
