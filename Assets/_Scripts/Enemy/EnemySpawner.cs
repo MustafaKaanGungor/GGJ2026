@@ -110,11 +110,12 @@ public class EnemySpawner : MonoBehaviour
             currentDistance -= Time.deltaTime * 0.2f;
         } 
         
-        if(distance <= 10.0f && isEnemiesSpawned)
+        if(distance <= 20.0f && isEnemiesSpawned)
         {   
             foreach(EnemyTest enemy in spawnedEnemies)
             {
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), towardPlayerLerpRate);
+                //enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), towardPlayerLerpRate);
+                enemy.TriggerAttackAnim();
             }
         }
     }
