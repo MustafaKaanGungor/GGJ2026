@@ -7,7 +7,7 @@ namespace Inventory.Core
     public class Slot
     {
         // ReSharper disable once MemberCanBePrivate.Global
-        public MaskBehaviour AttachedMask { get; private set; }
+        public Mask.Core.Mask AttachedMask { get; private set; }
         public SlotType SlotType { get; private set; }
 
         public Slot(SlotType slotType)
@@ -17,9 +17,9 @@ namespace Inventory.Core
 
         public bool IsEmpty => AttachedMask == null;
 
-        public void Attach(MaskBehaviour maskBehaviour)
+        public void Attach(Mask.Core.Mask mask)
         {
-            AttachedMask = maskBehaviour;
+            AttachedMask = mask;
         }
     }
 }
