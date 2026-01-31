@@ -1,5 +1,6 @@
 using System;
 using Inventory.Core;
+using Player.Core;
 
 // ReSharper disable once CheckNamespace
 namespace Mask.Core
@@ -20,6 +21,7 @@ namespace Mask.Core
         public Mask(MaskPerk perk, SlotType slotType)
         {
             Perk = perk;
+            SlotType = slotType;
         }
 
         public void RegisterEvents()
@@ -34,6 +36,8 @@ namespace Mask.Core
 
         public void Damage()
         {
+            if (SlotType != PlayerBehaviour.Instance.CurrentActiveSlotType) return;
+            
             if (Condition == MinimumCondition) return;
             Condition -= 1;
             OnConditionUpdate?.Invoke(SlotType, Condition);

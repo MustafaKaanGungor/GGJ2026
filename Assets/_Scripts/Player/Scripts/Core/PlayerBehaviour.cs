@@ -1,6 +1,7 @@
 using System;
 using Inventory.Core;
 using Stats.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -10,9 +11,12 @@ namespace Player.Core
     [DisallowMultipleComponent]
     public class PlayerBehaviour : MonoBehaviour
     {
+        public static PlayerBehaviour Instance { get; private set; }
+        
         public event Action<SlotType, Mask.Core.Mask> OnMaskChange;
 
         private SlotType _currentActiveSlotType;
+        public SlotType CurrentActiveSlotType => _currentActiveSlotType;
 
         public PlayerStats Stats { get; private set; } = new();
         public Inventory.Core.Inventory Inventory { get; private set; } = new();
@@ -20,6 +24,12 @@ namespace Player.Core
         private void OnEnable()
         {
             Inventory.RegisterEvents();
+        }
+
+        private void Awake()
+        {
+            if (Instance == null) Instance = this;
+            else Destroy(gameObject);
         }
 
         private void Start()
