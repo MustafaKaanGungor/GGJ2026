@@ -1,4 +1,5 @@
 using System;
+using Inventory.Core;
 using Player.Core;
 using UnityEngine;
 public class PlayerLaser : MonoBehaviour
@@ -10,10 +11,16 @@ public class PlayerLaser : MonoBehaviour
     [SerializeField] private Transform laserStartPoint;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private Transform cam;
+    [SerializeField] private 
 
     private float _timer;
     private float _interval;
     private PlayerBehaviour _playerBehaviour;
+
+    private void OnEnable()
+    {
+        _playerBehaviour.OnMaskChange += OnMaskChange;
+    }
 
     void Start()
     {
@@ -24,6 +31,11 @@ public class PlayerLaser : MonoBehaviour
         _interval = 0.25f;
         
         _playerBehaviour = PlayerBehaviour.Instance;
+    }
+
+    private void OnDisable()
+    {
+        _playerBehaviour.OnMaskChange -= OnMaskChange;
     }
 
     void Update()
@@ -56,6 +68,15 @@ public class PlayerLaser : MonoBehaviour
         } else
         {
             laserObjectHorizontal.SetActive(false);
+        }
+    }
+
+    private void OnMaskChange(SlotType slotType, Mask.Core.Mask mask)
+    {
+        if (mask == null)
+        {
+            laserObjectDefault.SetActive(false);
+            return;
         }
     }
 }

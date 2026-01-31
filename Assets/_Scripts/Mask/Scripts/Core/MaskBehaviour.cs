@@ -11,6 +11,7 @@ namespace Mask.Core
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public StatType Stat { get; private set; }
         [field: SerializeField] public byte Boost { get; private set; }
+        [field: SerializeField] public LaserType LaserType { get; private set; }
 
         private void Update()
         {
@@ -20,7 +21,7 @@ namespace Mask.Core
 #pragma warning restore CS0618 // Type or member is obsolete
             if (inventory.TryGetFirstEmptySlot(out var slot))
             {
-                var mask = new Mask(new MaskPerk(Stat, Boost), slot.SlotType);
+                var mask = new Mask(new MaskPerk(Stat, Boost), slot.SlotType, LaserType);
                 mask.RegisterEvents();
                 inventory.Add(slot.SlotType, mask, Icon);
             }
