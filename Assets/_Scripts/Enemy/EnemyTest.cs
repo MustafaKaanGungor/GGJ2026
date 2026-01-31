@@ -5,27 +5,25 @@ using UnityEngine;
 public class EnemyTest : MonoBehaviour
 {
     private LevelSegment levelSegment;
-    private float currentDistance = 1f;
+    
     [SerializeField] private float health = 100f;
     private MeshRenderer meshRenderer;
     private SphereCollider enemycollider;
+    public Vector3 offset;
     void Start()
     {
         levelSegment = GetComponentInParent<LevelSegment>();
-        meshRenderer = GetComponent<MeshRenderer>();
-        enemycollider = GetComponent<SphereCollider>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        enemycollider = GetComponentInChildren<SphereCollider>();
     }
 
     void Update()
     {
         if(levelSegment.activated)
         {
-            transform.position = levelSegment.path.spline.EvaluatePosition(currentDistance);
-            transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
-            currentDistance -= Time.deltaTime * 0.2f;
+            
         }
     }
-
     public void DealDamage(float amount)
     {
         health -= amount;
