@@ -39,7 +39,7 @@ namespace Mask.Core
             if (SlotType != PlayerBehaviour.Instance.CurrentActiveSlotType) return;
             
             if (Condition == MinimumCondition) return;
-            Condition -= 1;
+            Condition -= 5;
             OnConditionUpdate?.Invoke(SlotType, Condition);
             if (Condition == MinimumCondition) OnDegrade?.Invoke();
         }
