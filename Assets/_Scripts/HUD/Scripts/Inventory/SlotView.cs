@@ -1,3 +1,4 @@
+using System;
 using Inventory.Core;
 using Player.Core;
 using UnityEngine;
@@ -13,15 +14,27 @@ namespace HUD.Inventory
         [SerializeField] private PlayerBehaviour player;
         [SerializeField] private Image iconView;
         [SerializeField] private SlotType slotType;
+        [SerializeField] private Image[] toBeUpdated;
+        [SerializeField] private Color highlightedColor;
+
+        private Color[] _defaultColors;
 
         private void OnEnable()
         {
             player.Inventory.OnAdd += OnAdd;
+            player.OnMaskChange += OnMaskChange;
+        }
+
+        private void Start()
+        {
+            _defaultColors = new Color[toBeUpdated.Length];
+            for (var i = 0; i < _defaultColors.Length; i++) _defaultColors[i] = toBeUpdated[i].color;
         }
 
         private void OnDisable()
         {
             player.Inventory.OnAdd -= OnAdd;
+            player.OnMaskChange -= OnMaskChange;
         }
 
         private void OnAdd(SlotType addedSlotType, Mask.Core.Mask mask, Sprite icon)
@@ -29,6 +42,17 @@ namespace HUD.Inventory
             if (slotType != addedSlotType) return;
 
             iconView.sprite = icon;
+        }
+
+        private void OnMaskChange(SlotType changedSlotType)
+        {
+            if (slotType != changedSlotType)
+            {
+                for (var i = 0; i < toBeUpdated.Length; i++) toBeUpdated[i].color = _defaultColors[i];
+                return;
+            }
+
+            foreach (var image in toBeUpdated) image.color = highlightedColor;
         }
     }
 }

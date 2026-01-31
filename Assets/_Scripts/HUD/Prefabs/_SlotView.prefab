@@ -129,6 +129,10 @@ MonoBehaviour:
   player: {fileID: 0}
   iconView: {fileID: 1668937337787591720}
   slotType: 0
+  toBeUpdated:
+  - {fileID: 3349353063061595009}
+  - {fileID: 8346887115382506519}
+  highlightedColor: {r: 0.53333336, g: 0.99215686, b: 0.76862746, a: 1}
 --- !u!1 &1446982669597362969
 GameObject:
   m_ObjectHideFlags: 0
