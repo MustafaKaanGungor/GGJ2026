@@ -44,7 +44,7 @@ namespace HUD.Inventory
             iconView.sprite = icon;
         }
 
-        private void OnMaskChange(SlotType changedSlotType)
+        private void OnMaskChange(SlotType changedSlotType, Mask.Core.Mask mask)
         {
             if (slotType != changedSlotType)
             {

@@ -37,6 +37,11 @@ namespace Inventory.Core
             OnAdd?.Invoke(slotType, mask, icon);
         }
 
+        public Mask.Core.Mask Get(SlotType slotType)
+        {
+            return  _slots[slotType].AttachedMask;
+        }
+
         public void Remove(SlotType slotType)
         {
             _slots[slotType].Attach(null);

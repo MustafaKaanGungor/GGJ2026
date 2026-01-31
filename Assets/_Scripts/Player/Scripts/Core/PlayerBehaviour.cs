@@ -10,7 +10,7 @@ namespace Player.Core
     [DisallowMultipleComponent]
     public class PlayerBehaviour : MonoBehaviour
     {
-        public event Action<SlotType> OnMaskChange;
+        public event Action<SlotType, Mask.Core.Mask> OnMaskChange;
 
         private SlotType _currentActiveSlotType;
 
@@ -20,7 +20,7 @@ namespace Player.Core
         private void Start()
         {
             _currentActiveSlotType = SlotType.First;
-            OnMaskChange?.Invoke(_currentActiveSlotType);
+            OnMaskChange?.Invoke(_currentActiveSlotType, null);
         }
 
         private void Update()
@@ -28,19 +28,19 @@ namespace Player.Core
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 _currentActiveSlotType = SlotType.First;
-                OnMaskChange?.Invoke(_currentActiveSlotType);
+                OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 _currentActiveSlotType = SlotType.Second;
-                OnMaskChange?.Invoke(_currentActiveSlotType);
+                OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 _currentActiveSlotType = SlotType.Third;
-                OnMaskChange?.Invoke(_currentActiveSlotType);
+                OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
             }
         }
     }
