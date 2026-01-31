@@ -16,19 +16,17 @@ namespace HUD.Inventory
 
         private void OnEnable()
         {
-            player.Inventory.OnAdd += OnAddx;
+            player.Inventory.OnAdd += OnAdd;
         }
 
         private void OnDisable()
         {
-            player.Inventory.OnAdd -= OnAddx;
+            player.Inventory.OnAdd -= OnAdd;
         }
 
-        private void OnAddx(SlotType addedSlotType, Mask.Core.Mask mask, Sprite icon)
+        private void OnAdd(SlotType addedSlotType, Mask.Core.Mask mask, Sprite icon)
         {
             if (slotType != addedSlotType) return;
-
-            Debug.Log($"Added slot type {addedSlotType}, self slot type was {slotType}");
 
             iconView.sprite = icon;
         }
