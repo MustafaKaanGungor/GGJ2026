@@ -16,6 +16,7 @@ namespace HUD.Inventory
         [SerializeField] private SlotType slotType;
         [SerializeField] private Image[] toBeUpdated;
         [SerializeField] private Color highlightedColor;
+        [SerializeField] private Image fill;
 
         private Color[] _defaultColors;
 
@@ -53,6 +54,8 @@ namespace HUD.Inventory
             }
 
             foreach (var image in toBeUpdated) image.color = highlightedColor;
+
+            fill.fillAmount = mask.Condition;
         }
     }
 }

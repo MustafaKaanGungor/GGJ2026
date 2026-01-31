@@ -12,7 +12,7 @@ namespace Mask.Core
         private const byte DefaultCondition = 100;
         private const byte MinimumCondition = 0;
 
-        private byte Condition { get; set; } = DefaultCondition;
+        public byte Condition { get; set; } = DefaultCondition;
 
         public Mask(MaskPerk perk)
         {
