@@ -1,4 +1,3 @@
-using System;
 using Inventory.Core;
 using Player.Core;
 using UnityEngine;
@@ -46,6 +45,8 @@ namespace HUD.Inventory
 
             // TODO: Unsubscribe when mask is removed.
             mask.OnConditionUpdate += OnConditionUpdate;
+
+            fill.fillAmount = mask.Condition / 100.0f;
         }
 
         private void OnMaskChange(SlotType changedSlotType, Mask.Core.Mask mask)
