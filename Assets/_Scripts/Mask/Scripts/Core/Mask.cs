@@ -7,16 +7,17 @@ namespace Mask.Core
     public class Mask
     {
         public static event Action OnDegrade;
-        public event Action<byte> OnConditionUpdate;
+        public event Action<SlotType, byte> OnConditionUpdate;
 
         public MaskPerk Perk;
+        public SlotType SlotType;
 
         private const byte DefaultCondition = 100;
         private const byte MinimumCondition = 0;
 
         public byte Condition { get; set; } = DefaultCondition;
 
-        public Mask(MaskPerk perk)
+        public Mask(MaskPerk perk, SlotType slotType)
         {
             Perk = perk;
         }
@@ -35,7 +36,7 @@ namespace Mask.Core
         {
             if (Condition == MinimumCondition) return;
             Condition -= 1;
-            OnConditionUpdate?.Invoke(Condition);
+            OnConditionUpdate?.Invoke(SlotType, Condition);
             if (Condition == MinimumCondition) OnDegrade?.Invoke();
         }
     }

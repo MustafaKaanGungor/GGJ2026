@@ -68,8 +68,9 @@ namespace HUD.Inventory
             fill.fillAmount = mask.Condition / 100.0f;
         }
 
-        private void OnConditionUpdate(byte condition)
+        private void OnConditionUpdate(SlotType updatedSlotType, byte condition)
         {
+            if (slotType != updatedSlotType) return;
             fill.fillAmount = condition / 100.0f;
         }
 
