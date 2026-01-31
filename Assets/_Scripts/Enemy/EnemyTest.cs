@@ -10,11 +10,13 @@ public class EnemyTest : MonoBehaviour
     private MeshRenderer meshRenderer;
     private SphereCollider enemycollider;
     public Vector3 offset;
+    private Animator enemyAnimator;
     void Start()
     {
         levelSegment = GetComponentInParent<LevelSegment>();
         meshRenderer = GetComponentInChildren<MeshRenderer>();
         enemycollider = GetComponentInChildren<SphereCollider>();
+        enemyAnimator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -39,5 +41,10 @@ public class EnemyTest : MonoBehaviour
         enemycollider.enabled = false;
         yield return new WaitForSeconds(1f); 
         gameObject.SetActive(false);
+    }
+
+    public void TriggerAttackAnim()
+    {
+        enemyAnimator.SetTrigger("Attack");
     }
 }
