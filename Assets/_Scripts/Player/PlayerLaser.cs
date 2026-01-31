@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
 public class PlayerLaser : MonoBehaviour
 {
+    public static event Action OnFire;
+    
     [SerializeField] private GameObject laserObjectDefault;
     [SerializeField] private GameObject laserObjectHorizontal;
     [SerializeField] private Transform laserStartPoint;
@@ -25,6 +28,8 @@ public class PlayerLaser : MonoBehaviour
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
                     laserObjectHorizontal.transform.rotation = Quaternion.Slerp(laserObjectHorizontal.transform.rotation, targetRotation, rotationSpeed);
                 }
+                
+                OnFire?.Invoke();
             }
             laserObjectHorizontal.SetActive(true);
         } else
