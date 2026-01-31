@@ -1,12 +1,13 @@
 using System;
+using Inventory.Core;
 
 // ReSharper disable once CheckNamespace
 namespace Mask.Core
 {
     public class Mask
     {
+        public static event Action OnDegrade;
         public event Action<byte> OnConditionUpdate;
-        public event Action OnDegrade;
 
         public MaskPerk Perk;
 

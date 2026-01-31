@@ -17,10 +17,20 @@ namespace Player.Core
         public PlayerStats Stats { get; private set; } = new();
         public Inventory.Core.Inventory Inventory { get; private set; } = new();
 
+        private void OnEnable()
+        {
+            Inventory.RegisterEvents();
+        }
+
         private void Start()
         {
             _currentActiveSlotType = SlotType.First;
             OnMaskChange?.Invoke(_currentActiveSlotType, null);
+        }
+
+        private void OnDisable()
+        {
+            Inventory.UnregisterEvents();
         }
 
         private void Update()

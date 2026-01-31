@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = System.Object;
 
 // ReSharper disable once CheckNamespace
 
@@ -16,6 +17,16 @@ namespace Inventory.Core
             { SlotType.Second, new Slot(SlotType.Second) },
             { SlotType.Third, new Slot(SlotType.Third) }
         };
+
+        public void RegisterEvents()
+        {
+            Mask.Core.Mask.OnDegrade += OnDegrade;
+        }
+
+        public void UnregisterEvents()
+        {
+            Mask.Core.Mask.OnDegrade += OnDegrade;
+        }
 
         public bool TryGetFirstEmptySlot(out Slot targetSlot)
         {
@@ -45,6 +56,19 @@ namespace Inventory.Core
         public void Remove(SlotType slotType)
         {
             _slots[slotType].Attach(null);
+        }
+
+        private void OnDegrade()
+        {
+            foreach (var (slotType, slot) in _slots)
+            {
+                if (slot.IsEmpty) continue;
+                if (slot.AttachedMask.Condition == 0)
+                {
+                    slot.AttachedMask.UnregisterEvents();
+                    Remove(slotType);
+                }
+            }
         }
     }
 }
