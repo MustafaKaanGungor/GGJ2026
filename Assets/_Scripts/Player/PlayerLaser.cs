@@ -6,16 +6,15 @@ public class PlayerLaser : MonoBehaviour
 {
     public static event Action OnFire;
     
-    [SerializeField] private GameObject laserObjectDefault;
-    [SerializeField] private GameObject laserObjectHorizontal;
     [SerializeField] private Transform laserStartPoint;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private Transform cam;
-    [SerializeField] private 
+    [SerializeField] private LaserBehaviour[] laserBehaviours;
 
     private float _timer;
     private float _interval;
     private PlayerBehaviour _playerBehaviour;
+    private LaserBehaviour _currentActiveLaserBehaviour;
 
     private void OnEnable()
     {
@@ -42,7 +41,7 @@ public class PlayerLaser : MonoBehaviour
     {
         if (_playerBehaviour.Inventory.Get(_playerBehaviour.CurrentActiveSlotType) == null)
         {
-            laserObjectDefault.SetActive(false);
+            _currentActiveLaserBehaviour.gameObject.SetActive(false);
             return;
         }
         
@@ -61,13 +60,13 @@ public class PlayerLaser : MonoBehaviour
                 if(direction.magnitude >= 0.1f)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    laserObjectHorizontal.transform.rotation = Quaternion.Slerp(laserObjectHorizontal.transform.rotation, targetRotation, rotationSpeed);
+                    _currentActiveLaserBehaviour.transform.rotation = Quaternion.Slerp(_currentActiveLaserBehaviour.transform.rotation, targetRotation, rotationSpeed);
                 }
             }
-            laserObjectHorizontal.SetActive(true);
+            _currentActiveLaserBehaviour.gameObject.SetActive(true);
         } else
         {
-            laserObjectHorizontal.SetActive(false);
+            _currentActiveLaserBehaviour.gameObject.SetActive(false);
         }
     }
 
@@ -75,8 +74,15 @@ public class PlayerLaser : MonoBehaviour
     {
         if (mask == null)
         {
-            laserObjectDefault.SetActive(false);
+            _currentActiveLaserBehaviour.gameObject.SetActive(false);
             return;
+        }
+
+        foreach (var laserBehaviour in laserBehaviours)
+        {
+            if (laserBehaviour.LaserType != mask.LaserType) continue;
+            _currentActiveLaserBehaviour = laserBehaviour;
+            break;
         }
     }
 }

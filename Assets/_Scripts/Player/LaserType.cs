@@ -1,7 +1,9 @@
 // ReSharper disable once CheckNamespace
 public enum LaserType : byte
 {
-    Laser0 = 0,
-    Laser1 = 1,
-    Laser2 = 2
+    EyeHorizontal = 0,
+    VLaser2 = 1,
+    VLaser21 = 2,
+    Cylinder = 3,
+    Default = 4,
 }
