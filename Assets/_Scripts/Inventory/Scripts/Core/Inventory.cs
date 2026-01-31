@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using Mask.Core;
-using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 
@@ -8,6 +8,8 @@ namespace Inventory.Core
 {
     public class Inventory
     {
+        public event Action<SlotType, MaskBehaviour> OnAdd;
+
         private readonly Dictionary<SlotType, Slot> _slots = new()
         {
             { SlotType.First, new Slot() },
@@ -31,6 +33,7 @@ namespace Inventory.Core
         public void Add(SlotType slotType, MaskBehaviour maskBehaviour)
         {
             _slots[slotType].Attach(maskBehaviour);
+            OnAdd?.Invoke(slotType, maskBehaviour);
         }
 
         public void Remove(SlotType slotType)
