@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SpiralPathGenerator
   m_EditorClassIdentifier: 
   pathType: 2
-  sampleRate: 10
-  controlPointsPerSegment: 5
+  sampleRate: 5
+  controlPointsPerSegment: 10
   normalInterpolation:
     serializedVersion: 2
     m_Curve: []
@@ -30,6 +30,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   customValueInterpolation: 0
   axis: 1
-  spinRate: 10
-  steepness: 10
+  spinRate: 2.5
+  steepness: -10
   normalRotation: 0
