@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Mask.Core;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -27,10 +28,9 @@ namespace Inventory.Core
             return false;
         }
 
-        // TODO: Replace with actual mask behaviour later.
-        public void Add(SlotType slotType, GameObject gameObject)
+        public void Add(SlotType slotType, MaskBehaviour maskBehaviour)
         {
-            _slots[slotType].Attach(gameObject);
+            _slots[slotType].Attach(maskBehaviour);
         }
 
         public void Remove(SlotType slotType)
