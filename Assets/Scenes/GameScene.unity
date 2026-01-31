@@ -1157,6 +1157,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 136416336426341352}
+    - target: {fileID: 1892413889460730451, guid: bea3c5481765a4678857839319fe48b3, type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1967867515441425845, guid: bea3c5481765a4678857839319fe48b3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1257,6 +1261,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 136416336426341352}
+    - target: {fileID: 7915782234805259521, guid: bea3c5481765a4678857839319fe48b3, type: 3}
+      propertyPath: slotType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8683214693858116910, guid: bea3c5481765a4678857839319fe48b3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
