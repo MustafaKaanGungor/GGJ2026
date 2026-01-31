@@ -1,4 +1,4 @@
-using UnityEngine;
+using Mask.Core;
 
 // ReSharper disable once CheckNamespace
 
@@ -6,16 +6,20 @@ namespace Inventory.Core
 {
     public class Slot
     {
-        // TODO: Replace with actual mask behaviour later.
         // ReSharper disable once MemberCanBePrivate.Global
-        public GameObject AttachedMask { get; private set; }
+        public MaskBehaviour AttachedMask { get; private set; }
+        public SlotType SlotType { get; private set; }
+
+        public Slot(SlotType slotType)
+        {
+            SlotType = slotType;
+        }
 
         public bool IsEmpty => AttachedMask == null;
 
-        // TODO: Replace the parameter with actual mask behaviour later.
-        public void Attach(GameObject mask)
+        public void Attach(MaskBehaviour maskBehaviour)
         {
-            AttachedMask = mask;
+            AttachedMask = maskBehaviour;
         }
     }
 }
