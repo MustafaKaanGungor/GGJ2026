@@ -30,6 +30,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   customValueInterpolation: 0
   axis: 1
-  spinRate: 2.5
-  steepness: -10
+  spinRate: 10
+  steepness: -5
   normalRotation: 0
