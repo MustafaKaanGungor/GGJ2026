@@ -10,16 +10,29 @@ public class PlayerLaser : MonoBehaviour
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private Transform cam;
 
+    private float _timer;
+    private float _interval;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        _timer = 0.0f;
+        _interval = 0.25f;
     }
 
     void Update()
     {
         if(Input.GetKey(KeyCode.Mouse0))
         {
+            _timer += Time.deltaTime;
+            if (_timer >= _interval)
+            {
+                _timer = 0.0f;
+                OnFire?.Invoke();
+            }
+            
             if(Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo))
             {
                 Vector3 direction = hitInfo.point - laserStartPoint.position;
@@ -28,8 +41,6 @@ public class PlayerLaser : MonoBehaviour
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
                     laserObjectHorizontal.transform.rotation = Quaternion.Slerp(laserObjectHorizontal.transform.rotation, targetRotation, rotationSpeed);
                 }
-                
-                OnFire?.Invoke();
             }
             laserObjectHorizontal.SetActive(true);
         } else
