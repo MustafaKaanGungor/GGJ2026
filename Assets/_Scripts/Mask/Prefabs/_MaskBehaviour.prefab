@@ -122,3 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 21300000, guid: 8889f7ed6f3714084a56d1aad6225b36, type: 3}
+  <Stat>k__BackingField: 0
+  <Boost>k__BackingField: 0
+  <LaserType>k__BackingField: 4

@@ -2,10 +2,11 @@ using System;
 using Inventory.Core;
 using Player.Core;
 using UnityEngine;
+
 public class PlayerLaser : MonoBehaviour
 {
     public static event Action OnFire;
-    
+
     [SerializeField] private Transform laserStartPoint;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private Transform cam;
@@ -18,7 +19,6 @@ public class PlayerLaser : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerBehaviour.OnMaskChange += OnMaskChange;
     }
 
     void Start()
@@ -28,24 +28,27 @@ public class PlayerLaser : MonoBehaviour
 
         _timer = 0.0f;
         _interval = 0.25f;
-        
+
         _playerBehaviour = PlayerBehaviour.Instance;
+        _playerBehaviour.OnMaskChange += OnMaskChange;
+        _playerBehaviour.Inventory.OnAdd += OnAdd;
     }
 
     private void OnDisable()
     {
         _playerBehaviour.OnMaskChange -= OnMaskChange;
+        _playerBehaviour.Inventory.OnAdd -= OnAdd;
     }
 
     void Update()
     {
         if (_playerBehaviour.Inventory.Get(_playerBehaviour.CurrentActiveSlotType) == null)
         {
-            _currentActiveLaserBehaviour.gameObject.SetActive(false);
+            _currentActiveLaserBehaviour?.gameObject.SetActive(false);
             return;
         }
-        
-        if(Input.GetKey(KeyCode.Mouse0))
+
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             _timer += Time.deltaTime;
             if (_timer >= _interval)
@@ -53,20 +56,24 @@ public class PlayerLaser : MonoBehaviour
                 _timer = 0.0f;
                 OnFire?.Invoke();
             }
-            
-            if(Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo))
+
+            if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo))
             {
                 Vector3 direction = hitInfo.point - laserStartPoint.position;
-                if(direction.magnitude >= 0.1f)
+                if (direction.magnitude >= 0.1f)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    _currentActiveLaserBehaviour.transform.rotation = Quaternion.Slerp(_currentActiveLaserBehaviour.transform.rotation, targetRotation, rotationSpeed);
+                    _currentActiveLaserBehaviour.transform.rotation =
+                        Quaternion.Slerp(_currentActiveLaserBehaviour.transform.rotation, targetRotation,
+                            rotationSpeed);
                 }
             }
+
             _currentActiveLaserBehaviour.gameObject.SetActive(true);
-        } else
+        }
+        else
         {
-            _currentActiveLaserBehaviour.gameObject.SetActive(false);
+            _currentActiveLaserBehaviour?.gameObject.SetActive(false);
         }
     }
 
@@ -74,7 +81,7 @@ public class PlayerLaser : MonoBehaviour
     {
         if (mask == null)
         {
-            _currentActiveLaserBehaviour.gameObject.SetActive(false);
+            _currentActiveLaserBehaviour?.gameObject.SetActive(false);
             return;
         }
 
@@ -84,5 +91,19 @@ public class PlayerLaser : MonoBehaviour
             _currentActiveLaserBehaviour = laserBehaviour;
             break;
         }
+
+        _currentActiveLaserBehaviour.gameObject.SetActive(true);
+    }
+
+    private void OnAdd(SlotType slotType, Mask.Core.Mask mask, Sprite sprite)
+    {
+        foreach (var laserBehaviour in laserBehaviours)
+        {
+            if (laserBehaviour.LaserType != mask.LaserType) continue;
+            _currentActiveLaserBehaviour = laserBehaviour;
+            break;
+        }
+
+        _currentActiveLaserBehaviour.gameObject.SetActive(true);
     }
 }
