@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 2423747191063746044}
   - component: {fileID: 8276318211993640096}
   - component: {fileID: 6334183773471833825}
+  - component: {fileID: 1499562979859545771}
   m_Layer: 0
   m_Name: ThirdPersonWalker_C
   m_TagString: Untagged
@@ -430,6 +431,18 @@ MonoBehaviour:
     applyScaleX: 0
     applyScaleY: 0
     applyScaleZ: 0
+--- !u!114 &1499562979859545771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207392453212439336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07634554c9844fbda6a3e6c78306c78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6249524487274155011
 GameObject:
   m_ObjectHideFlags: 0
