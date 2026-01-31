@@ -20,7 +20,9 @@ namespace Mask.Core
 #pragma warning restore CS0618 // Type or member is obsolete
             if (inventory.TryGetFirstEmptySlot(out var slot))
             {
-                inventory.Add(slot.SlotType, new Mask(new MaskPerk(Stat, Boost)), Icon);
+                var mask = new Mask(new MaskPerk(Stat, Boost));
+                mask.RegisterEvents();
+                inventory.Add(slot.SlotType, mask, Icon);
             }
         }
     }

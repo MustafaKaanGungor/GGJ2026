@@ -43,6 +43,9 @@ namespace HUD.Inventory
             if (slotType != addedSlotType) return;
 
             iconView.sprite = icon;
+
+            // TODO: Unsubscribe when mask is removed.
+            mask.OnConditionUpdate += OnConditionUpdate;
         }
 
         private void OnMaskChange(SlotType changedSlotType, Mask.Core.Mask mask)
@@ -55,7 +58,14 @@ namespace HUD.Inventory
 
             foreach (var image in toBeUpdated) image.color = highlightedColor;
 
-            fill.fillAmount = mask.Condition;
+            if (mask == null) return;
+
+            fill.fillAmount = mask.Condition / 100.0f;
+        }
+
+        private void OnConditionUpdate(byte condition)
+        {
+            fill.fillAmount = condition / 100.0f;
         }
     }
 }

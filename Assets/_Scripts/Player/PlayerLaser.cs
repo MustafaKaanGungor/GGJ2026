@@ -30,6 +30,7 @@ public class PlayerLaser : MonoBehaviour
             if (_timer >= _interval)
             {
                 _timer = 0.0f;
+                Debug.Log("Raised!");
                 OnFire?.Invoke();
             }
             

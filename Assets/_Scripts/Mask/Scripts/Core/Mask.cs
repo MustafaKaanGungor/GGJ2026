@@ -5,6 +5,7 @@ namespace Mask.Core
 {
     public class Mask
     {
+        public event Action<byte> OnConditionUpdate;
         public event Action OnDegrade;
 
         public MaskPerk Perk;
@@ -19,10 +20,21 @@ namespace Mask.Core
             Perk = perk;
         }
 
-        public void Damage(byte damage)
+        public void RegisterEvents()
+        {
+            PlayerLaser.OnFire += Damage;
+        }
+
+        public void UnregisterEvents()
+        {
+            PlayerLaser.OnFire -= Damage;
+        }
+
+        public void Damage()
         {
             if (Condition == MinimumCondition) return;
-            Condition -= damage;
+            Condition -= 1;
+            OnConditionUpdate?.Invoke(Condition);
             if (Condition == MinimumCondition) OnDegrade?.Invoke();
         }
     }
