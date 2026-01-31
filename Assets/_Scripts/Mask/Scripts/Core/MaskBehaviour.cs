@@ -1,3 +1,4 @@
+using System;
 using Player.Core;
 using Stats.Core;
 using UnityEngine;
@@ -16,12 +17,21 @@ namespace Mask.Core
         private void Update()
         {
             if (!Input.GetKeyDown(KeyCode.Space)) return;
+
 #pragma warning disable CS0618 // Type or member is obsolete
             var inventory = FindObjectOfType<PlayerBehaviour>().Inventory;
 #pragma warning restore CS0618 // Type or member is obsolete
+
             if (inventory.TryGetFirstEmptySlot(out var slot))
             {
-                var mask = new Mask(new MaskPerk(Stat, Boost), slot.SlotType, LaserType);
+                var mask = new Mask(
+                    new MaskPerk(Stat, Boost),
+                    slot.SlotType,
+                    ((LaserType[])Enum.GetValues(typeof(LaserType)))[
+                        UnityEngine.Random.Range(0, Enum.GetValues(typeof(LaserType)).Length)
+                    ]
+                );
+
                 mask.RegisterEvents();
                 inventory.Add(slot.SlotType, mask, Icon);
             }
