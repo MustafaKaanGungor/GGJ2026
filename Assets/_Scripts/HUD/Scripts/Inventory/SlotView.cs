@@ -18,10 +18,12 @@ namespace HUD.Inventory
         [SerializeField] private Image fill;
 
         private Color[] _defaultColors;
+        private Sprite _defaultIcon;
 
         private void OnEnable()
         {
             player.Inventory.OnAdd += OnAdd;
+            player.Inventory.OnRemove += OnRemove;
             player.OnMaskChange += OnMaskChange;
         }
 
@@ -29,11 +31,13 @@ namespace HUD.Inventory
         {
             _defaultColors = new Color[toBeUpdated.Length];
             for (var i = 0; i < _defaultColors.Length; i++) _defaultColors[i] = toBeUpdated[i].color;
+            _defaultIcon = iconView.sprite;
         }
 
         private void OnDisable()
         {
             player.Inventory.OnAdd -= OnAdd;
+            player.Inventory.OnRemove -= OnRemove;
             player.OnMaskChange -= OnMaskChange;
         }
 
@@ -67,6 +71,12 @@ namespace HUD.Inventory
         private void OnConditionUpdate(byte condition)
         {
             fill.fillAmount = condition / 100.0f;
+        }
+
+        private void OnRemove(SlotType removedSlotType)
+        {
+            if (slotType != removedSlotType) return;
+            iconView.sprite = _defaultIcon;
         }
     }
 }

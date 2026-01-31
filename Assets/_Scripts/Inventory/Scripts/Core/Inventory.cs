@@ -10,6 +10,7 @@ namespace Inventory.Core
     public class Inventory
     {
         public event Action<SlotType, Mask.Core.Mask, Sprite> OnAdd;
+        public event Action<SlotType> OnRemove;
 
         private readonly Dictionary<SlotType, Slot> _slots = new()
         {
@@ -67,6 +68,7 @@ namespace Inventory.Core
                 {
                     slot.AttachedMask.UnregisterEvents();
                     Remove(slotType);
+                    OnRemove?.Invoke(slotType);
                 }
             }
         }
