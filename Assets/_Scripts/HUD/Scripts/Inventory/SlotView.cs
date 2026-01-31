@@ -1,5 +1,4 @@
 using Inventory.Core;
-using Mask.Core;
 using Player.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,21 +16,21 @@ namespace HUD.Inventory
 
         private void OnEnable()
         {
-            player.Inventory.OnAdd += OnAdd;
+            player.Inventory.OnAdd += OnAddx;
         }
 
         private void OnDisable()
         {
-            player.Inventory.OnAdd -= OnAdd;
+            player.Inventory.OnAdd -= OnAddx;
         }
 
-        private void OnAdd(SlotType addedSlotType, MaskBehaviour maskBehaviour)
+        private void OnAddx(SlotType addedSlotType, Mask.Core.Mask mask, Sprite icon)
         {
             if (slotType != addedSlotType) return;
 
             Debug.Log($"Added slot type {addedSlotType}, self slot type was {slotType}");
 
-            iconView.sprite = maskBehaviour.Icon;
+            iconView.sprite = icon;
         }
     }
 }
