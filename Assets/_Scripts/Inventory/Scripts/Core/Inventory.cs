@@ -26,7 +26,7 @@ namespace Inventory.Core
 
         public void UnregisterEvents()
         {
-            Mask.Core.Mask.OnDegrade += OnDegrade;
+            Mask.Core.Mask.OnDegrade -= OnDegrade;
         }
 
         public bool TryGetFirstEmptySlot(out Slot targetSlot)
