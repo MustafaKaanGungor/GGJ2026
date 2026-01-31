@@ -7,10 +7,17 @@ namespace Mask.Core
     {
         public event Action OnDegrade;
 
+        public MaskPerk Perk;
+
         private const byte DefaultCondition = 100;
         private const byte MinimumCondition = 0;
 
         private byte Condition { get; set; } = DefaultCondition;
+
+        public Mask(MaskPerk perk)
+        {
+            Perk = perk;
+        }
 
         public void Damage(byte damage)
         {
