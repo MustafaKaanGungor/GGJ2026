@@ -20,11 +20,6 @@ namespace HUD.Inventory
             player.Inventory.OnAdd += OnAdd;
         }
 
-        private void Start()
-        {
-            TryGetComponent(out iconView);
-        }
-
         private void OnDisable()
         {
             player.Inventory.OnAdd -= OnAdd;
@@ -34,10 +29,9 @@ namespace HUD.Inventory
         {
             if (slotType != addedSlotType) return;
 
-            if (player.Inventory.TryGetFirstEmptySlot(out var slot))
-            {
-                iconView.sprite = maskBehaviour.Icon;
-            }
+            Debug.Log($"Added slot type {addedSlotType}, self slot type was {slotType}");
+
+            iconView.sprite = maskBehaviour.Icon;
         }
     }
 }

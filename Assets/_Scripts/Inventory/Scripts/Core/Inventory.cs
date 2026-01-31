@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Mask.Core;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 
@@ -12,15 +13,16 @@ namespace Inventory.Core
 
         private readonly Dictionary<SlotType, Slot> _slots = new()
         {
-            { SlotType.First, new Slot() },
-            { SlotType.Second, new Slot() },
-            { SlotType.Third, new Slot() }
+            { SlotType.First, new Slot(SlotType.First) },
+            { SlotType.Second, new Slot(SlotType.Second) },
+            { SlotType.Third, new Slot(SlotType.Third) }
         };
 
         public bool TryGetFirstEmptySlot(out Slot targetSlot)
         {
             foreach (var (_, slot) in _slots)
             {
+                Debug.Log($"{slot.SlotType} is empty: {slot.IsEmpty}");
                 if (!slot.IsEmpty) continue;
                 targetSlot = slot;
                 return true;
