@@ -1,4 +1,5 @@
 using System;
+using Player.Core;
 using UnityEngine;
 public class PlayerLaser : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerLaser : MonoBehaviour
 
     private float _timer;
     private float _interval;
+    private PlayerBehaviour _playerBehaviour;
 
     void Start()
     {
@@ -20,10 +22,18 @@ public class PlayerLaser : MonoBehaviour
 
         _timer = 0.0f;
         _interval = 0.25f;
+        
+        _playerBehaviour = PlayerBehaviour.Instance;
     }
 
     void Update()
     {
+        if (_playerBehaviour.Inventory.Get(_playerBehaviour.CurrentActiveSlotType) == null)
+        {
+            laserObjectDefault.SetActive(false);
+            return;
+        }
+        
         if(Input.GetKey(KeyCode.Mouse0))
         {
             _timer += Time.deltaTime;
