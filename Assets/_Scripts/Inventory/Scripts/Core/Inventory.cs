@@ -33,7 +33,6 @@ namespace Inventory.Core
         {
             foreach (var (_, slot) in _slots)
             {
-                Debug.Log($"{slot.SlotType} is empty: {slot.IsEmpty}");
                 if (!slot.IsEmpty) continue;
                 targetSlot = slot;
                 return true;
