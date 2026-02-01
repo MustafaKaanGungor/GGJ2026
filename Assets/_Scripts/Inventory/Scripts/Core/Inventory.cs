@@ -11,6 +11,7 @@ namespace Inventory.Core
     {
         public event Action<SlotType, Mask.Core.Mask, Sprite> OnAdd;
         public event Action<SlotType> OnRemove;
+        public event Action Cleared;
 
         private readonly Dictionary<SlotType, Slot> _slots = new()
         {
@@ -50,7 +51,7 @@ namespace Inventory.Core
 
         public Mask.Core.Mask Get(SlotType slotType)
         {
-            return  _slots[slotType].AttachedMask;
+            return _slots[slotType].AttachedMask;
         }
 
         public void Remove(SlotType slotType)
@@ -60,15 +61,27 @@ namespace Inventory.Core
 
         private void OnDegrade()
         {
+            var emptySloutCount = 0;
+
             foreach (var (slotType, slot) in _slots)
             {
-                if (slot.IsEmpty) continue;
+                if (slot.IsEmpty)
+                {
+                    emptySloutCount++;
+                    continue;
+                }
+
                 if (slot.AttachedMask.Condition == 0)
                 {
                     slot.AttachedMask.UnregisterEvents();
                     Remove(slotType);
                     OnRemove?.Invoke(slotType);
                 }
+            }
+
+            if (emptySloutCount == _slots.Count)
+            {
+                Cleared?.Invoke();
             }
         }
     }
