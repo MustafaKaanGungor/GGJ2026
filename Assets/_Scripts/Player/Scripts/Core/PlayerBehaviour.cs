@@ -21,6 +21,7 @@ namespace Player.Core
         public PlayerStats Stats { get; private set; } = new();
         public Inventory.Core.Inventory Inventory { get; private set; } = new();
         [SerializeField] private Sprite defaultMaskIcon;
+        private Animator animator;
 
         private void OnEnable()
         {
@@ -35,6 +36,8 @@ namespace Player.Core
 
         private void Start()
         {
+            animator = GetComponentInChildren<Animator>();
+            animator.SetTrigger("GameStarted");
             _currentActiveSlotType = SlotType.First;
             OnMaskChange?.Invoke(_currentActiveSlotType, null);
             if (Inventory.TryGetFirstEmptySlot(out var slot))
@@ -62,18 +65,21 @@ namespace Player.Core
             {
                 _currentActiveSlotType = SlotType.First;
                 OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
+                animator.SetTrigger("MaskPickup");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 _currentActiveSlotType = SlotType.Second;
                 OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
+                animator.SetTrigger("MaskPickup");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 _currentActiveSlotType = SlotType.Third;
                 OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
+                animator.SetTrigger("MaskPickup");
             }
         }
     }

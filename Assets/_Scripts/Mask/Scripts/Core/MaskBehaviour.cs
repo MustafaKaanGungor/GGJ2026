@@ -20,7 +20,6 @@ namespace Mask.Core
         {
             if(other.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour player))
             {
-                Debug.Log("deydi???");
                 #pragma warning disable CS0618 // Type or member is obsolete
                 var inventory = player.Inventory;
                 #pragma warning restore CS0618 // Type or member is obsolete
