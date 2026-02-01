@@ -9,7 +9,9 @@ public class EnemySpawner : MonoBehaviour
     private LevelSegment segment;
     private WaveType waveType;
     private bool isEnemiesSpawned = false;
+    private bool isChest = false;
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject chestPrefab;
     private GameObject tempEnemy;
     private float currentDistance = 1f;
     private float towardPlayerLerpRate = 0.03f;
@@ -18,13 +20,25 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         segment = GetComponentInParent<LevelSegment>();
-        waveType = (WaveType)Random.Range(0, 5);
+        int randomNumber = Random.Range(0, 6);
+        if(randomNumber != 5)
+        {
+            waveType = (WaveType)randomNumber;
+        } else
+        {
+            isChest = true;
+        }
+        
         segment.onActivate += OnSegmentActivated;
     }
 
     private void OnSegmentActivated(int obj)
-    {
-        if(!isEnemiesSpawned)
+    {   
+        if (isChest)
+        {
+            Instantiate(chestPrefab, transform, false);
+        }
+        else if(!isEnemiesSpawned)
         {
             switch(waveType)
             {

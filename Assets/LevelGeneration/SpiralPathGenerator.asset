@@ -31,5 +31,5 @@ MonoBehaviour:
   customValueInterpolation: 0
   axis: 1
   spinRate: 10
-  steepness: -5
+  steepness: -3.4
   normalRotation: 0

@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8193391375643286740, guid: ee8b1d7f2aa3985448d0bb7f79df1ba9, type: 3}
+      propertyPath: _activateSegmentsAhead
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -544,6 +548,18 @@ PrefabInstance:
     - target: {fileID: 3752931639245947416, guid: f100015beac1fc8498a05b67bac9a111, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816012393179525897, guid: f100015beac1fc8498a05b67bac9a111, type: 3}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732857931273799230, guid: f100015beac1fc8498a05b67bac9a111, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902177883081858144, guid: f100015beac1fc8498a05b67bac9a111, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7530086210127954372, guid: f100015beac1fc8498a05b67bac9a111, type: 3}
       propertyPath: m_Name

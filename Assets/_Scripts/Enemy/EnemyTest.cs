@@ -31,16 +31,18 @@ public class EnemyTest : MonoBehaviour
         health -= amount;
         if(health <= 0)
         {
-            StartCoroutine(Dead());
+            gameObject.SetActive(false);
+            /*meshRenderer.enabled = false;
+        enemycollider.enabled = false;
+            StartCoroutine(Dead());*/
         }
     }
 
     private IEnumerator Dead()
     {
-        meshRenderer.enabled = false;
-        enemycollider.enabled = false;
+        
         yield return new WaitForSeconds(1f); 
-        gameObject.SetActive(false);
+        
     }
 
     public void TriggerAttackAnim()
