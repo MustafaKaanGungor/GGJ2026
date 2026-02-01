@@ -22,11 +22,6 @@ namespace Player.Core
         public Inventory.Core.Inventory Inventory { get; private set; } = new();
         [SerializeField] private Sprite defaultMaskIcon;
         private Animator animator;
-        [SerializeField] private MaskSpot maskSpot1;
-        [SerializeField] private MaskSpot maskSpot2;
-        [SerializeField] private MaskSpot maskSpot3;
-
-
 
         private void OnEnable()
         {
@@ -85,32 +80,6 @@ namespace Player.Core
                 _currentActiveSlotType = SlotType.Third;
                 OnMaskChange?.Invoke(_currentActiveSlotType, Inventory.Get(_currentActiveSlotType));
                 animator.SetTrigger("MaskPickup");
-            }
-
-            if(_currentActiveSlotType != SlotType.First && Inventory.Get(SlotType.First) != null)
-            {
-                Debug.Log("heyo");
-                maskSpot1.ChangeMaskModel(Inventory.Get(SlotType.First).LaserType);
-            } else
-            {
-                maskSpot1.EmptySlot();
-            }
-
-            if(_currentActiveSlotType != SlotType.Second && Inventory.Get(SlotType.Second) != null)
-            {
-                Debug.Log("heyoo");
-                maskSpot2.ChangeMaskModel(Inventory.Get(SlotType.Second).LaserType);
-            } else
-            {
-                maskSpot2.EmptySlot();
-            }
-
-            if(_currentActiveSlotType != SlotType.Third && Inventory.Get(SlotType.Third) != null)
-            {
-                maskSpot3.ChangeMaskModel(Inventory.Get(SlotType.Third).LaserType);
-            } else
-            {
-                maskSpot3.EmptySlot();
             }
         }
     }
