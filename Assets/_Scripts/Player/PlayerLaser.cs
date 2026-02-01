@@ -16,6 +16,9 @@ public class PlayerLaser : MonoBehaviour
     private float _interval;
     private PlayerBehaviour _playerBehaviour;
     private LaserBehaviour _currentActiveLaserBehaviour;
+    
+        private AudioSource laserAudio;
+    
 
     private void OnEnable()
     {
@@ -25,6 +28,8 @@ public class PlayerLaser : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        laserAudio = GetComponentInChildren<AudioSource>();
 
         _timer = 0.0f;
         _interval = 0.25f;
@@ -50,6 +55,7 @@ public class PlayerLaser : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
+            laserAudio.Play();
             _timer += Time.deltaTime;
             if (_timer >= _interval)
             {
@@ -74,6 +80,7 @@ public class PlayerLaser : MonoBehaviour
         else
         {
             _currentActiveLaserBehaviour?.gameObject.SetActive(false);
+            laserAudio.Stop();
         }
     }
 
