@@ -8,23 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StartingGround
-  m_Shader: {fileID: -6465566751694194690, guid: edd7abf643fa4bc4e8561d4c280c97cf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0e9d5a909a1f7e84882a534d0d11e49f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - TCP2_REFLECTIONS_FRESNEL
-  - TCP2_RIM_LIGHTING_LIGHTMASK
-  - TCP2_SHADOW_LIGHT_COLOR
-  - _NORMALMAP
-  m_InvalidKeywords:
-  - TCP2_UV_NORMALS_FULL
-  - _SPECULAR_SETUP
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -34,7 +29,7 @@ Material:
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 3aa91d3f7f25cd942a3e123671bffa75, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1880351514be2924e804390dde33f203, type: 3}
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _ClearCoatMap:
@@ -58,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c215586567b821c49a5704bf095d6cd7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapMask:
@@ -70,11 +65,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e43ad19c4835e1b4abcbe4fa35722be0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a856972d557c55b44adff6d37ca41974, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -183,14 +178,14 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _UseAlphaTest: 0
-    - _UseAoMap: 0
-    - _UseColorMap: 0
+    - _UseAoMap: 1
+    - _UseColorMap: 1
     - _UseEmission: 0
     - _UseEmissiveMap: 0
     - _UseFresnelReflections: 1
     - _UseMatCap: 0
     - _UseMatCapMask: 0
-    - _UseMetallicMap: 0
+    - _UseMetallicMap: 1
     - _UseMobileMode: 0
     - _UseNormalMap: 1
     - _UseOcclusion: 0
@@ -216,7 +211,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _UvTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4478407331692488626
