@@ -1,5 +1,7 @@
+using Dreamteck.Forever;
 using Player.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -24,5 +26,19 @@ public class GameOver : MonoBehaviour
         {
             toSetActive[i].gameObject.SetActive(true);
         }
+
+        _player.GetComponent<Runner>().followSpeed = 0.0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadActiveScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

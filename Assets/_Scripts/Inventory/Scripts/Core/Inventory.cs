@@ -65,11 +65,7 @@ namespace Inventory.Core
 
             foreach (var (slotType, slot) in _slots)
             {
-                if (slot.IsEmpty)
-                {
-                    emptySloutCount++;
-                    continue;
-                }
+                if (slot.IsEmpty) continue;
 
                 if (slot.AttachedMask.Condition == 0)
                 {
@@ -77,6 +73,11 @@ namespace Inventory.Core
                     Remove(slotType);
                     OnRemove?.Invoke(slotType);
                 }
+            }
+
+            foreach (var (slotType, slot) in _slots)
+            {
+                if (slot.IsEmpty) emptySloutCount++;
             }
 
             if (emptySloutCount == _slots.Count)
