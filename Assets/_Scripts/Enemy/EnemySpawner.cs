@@ -20,8 +20,8 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         segment = GetComponentInParent<LevelSegment>();
-        int randomNumber = Random.Range(0, 6);
-        if(randomNumber != 5)
+        int randomNumber = Random.Range(0, 9);
+        if(randomNumber < 5)
         {
             waveType = (WaveType)randomNumber;
         } else
