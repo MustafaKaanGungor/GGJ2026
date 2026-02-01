@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Inventory.Core;
 using Stats.Core;
 using Unity.VisualScripting;
@@ -11,9 +12,13 @@ namespace Player.Core
     [DisallowMultipleComponent]
     public class PlayerBehaviour : MonoBehaviour
     {
+        public Sprite[] StatIcons;
+
         public static PlayerBehaviour Instance { get; private set; }
         
         public event Action<SlotType, Mask.Core.Mask> OnMaskChange;
+
+        public Dictionary<StatType, Sprite> StatIconsDict;
 
         private SlotType _currentActiveSlotType;
         public SlotType CurrentActiveSlotType => _currentActiveSlotType;

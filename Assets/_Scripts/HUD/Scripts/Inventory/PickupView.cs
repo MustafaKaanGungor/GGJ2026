@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Mask.Core;
+using Stats.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,14 @@ namespace HUD.Inventory
         {
             if (_sequence != null && _sequence.IsActive())
                 _sequence.Kill();
+
+            foreach (var x in GetComponentsInChildren<PickupSlotView>())
+            {
+                x.UpdateView(((StatType[])System.Enum.GetValues(typeof(StatType)))[
+                    Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length)
+                ]);
+            }
+
 
             _isActive = true;
 

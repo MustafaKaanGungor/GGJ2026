@@ -521,6 +521,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07634554c9844fbda6a3e6c78306c78e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StatIcons:
+  - {fileID: 21300000, guid: 5c1bfe7efc775424c85f849e77d351a4, type: 3}
+  - {fileID: 21300000, guid: 5f4dedf921d60448e908f1276c08dd20, type: 3}
+  - {fileID: 21300000, guid: aeec8d8d8f39b45a686fb6280a445f47, type: 3}
   defaultMaskIcon: {fileID: 0}
 --- !u!114 &8845406580066036289
 MonoBehaviour:

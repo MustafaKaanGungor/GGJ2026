@@ -10,14 +10,14 @@ public class EnemyTest : MonoBehaviour
     
     [SerializeField] private float health = 100f;
     private MeshRenderer meshRenderer;
-    private SphereCollider enemycollider;
+    private BoxCollider enemycollider;
     public Vector3 offset;
     private Animator enemyAnimator;
     void Start()
     {
         levelSegment = GetComponentInParent<LevelSegment>();
         meshRenderer = GetComponentInChildren<MeshRenderer>();
-        enemycollider = GetComponentInChildren<SphereCollider>();
+        enemycollider = GetComponentInChildren<BoxCollider>();
         enemyAnimator = GetComponentInChildren<Animator>();
     }
 
