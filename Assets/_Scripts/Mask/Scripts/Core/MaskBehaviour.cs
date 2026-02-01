@@ -39,10 +39,10 @@ namespace Mask.Core
                     mask.RegisterEvents();
                     inventory.Add(slot.SlotType, mask, Icon);
                 }
-            }
-            else
-            {
-                OnMaskClaimWhenFull?.Invoke();
+                else
+                {
+                    OnMaskClaimWhenFull?.Invoke();
+                }
             }
         }
     }
