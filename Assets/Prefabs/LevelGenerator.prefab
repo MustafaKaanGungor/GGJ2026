@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _generateSegmentsAhead: 25
-  _activateSegmentsAhead: 2
+  _activateSegmentsAhead: 1
   _loadTimeout: 10
   _maxSegments: 50
   _buildOnAwake: 1
@@ -127,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae3839aede67a864999084d976b4b25f, type: 2}
+  - {fileID: 2100000, guid: bfead2c7ea2c71a49af7b9e6e9d68d60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -14,26 +14,30 @@ namespace Mask.Core
         [field: SerializeField] public byte Boost { get; private set; }
         [field: SerializeField] public LaserType LaserType { get; private set; }
 
-        private void Update()
+        
+
+        void OnTriggerEnter(Collider other)
         {
-            if (!Input.GetKeyDown(KeyCode.Space)) return;
-
-#pragma warning disable CS0618 // Type or member is obsolete
-            var inventory = FindObjectOfType<PlayerBehaviour>().Inventory;
-#pragma warning restore CS0618 // Type or member is obsolete
-
-            if (inventory.TryGetFirstEmptySlot(out var slot))
+            if(other.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour player))
             {
-                var mask = new Mask(
-                    new MaskPerk(Stat, Boost),
-                    slot.SlotType,
-                    ((LaserType[])Enum.GetValues(typeof(LaserType)))[
-                        UnityEngine.Random.Range(0, Enum.GetValues(typeof(LaserType)).Length)
-                    ]
-                );
+                Debug.Log("deydi???");
+                #pragma warning disable CS0618 // Type or member is obsolete
+                var inventory = player.Inventory;
+                #pragma warning restore CS0618 // Type or member is obsolete
 
-                mask.RegisterEvents();
-                inventory.Add(slot.SlotType, mask, Icon);
+                if (inventory.TryGetFirstEmptySlot(out var slot))
+                {
+                    var mask = new Mask(
+                        new MaskPerk(Stat, Boost),
+                        slot.SlotType,
+                        ((LaserType[])Enum.GetValues(typeof(LaserType)))[
+                            UnityEngine.Random.Range(0, Enum.GetValues(typeof(LaserType)).Length)
+                        ]
+                    );
+
+                    mask.RegisterEvents();
+                    inventory.Add(slot.SlotType, mask, Icon);
+                }
             }
         }
     }

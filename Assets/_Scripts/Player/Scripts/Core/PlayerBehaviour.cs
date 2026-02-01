@@ -20,6 +20,7 @@ namespace Player.Core
 
         public PlayerStats Stats { get; private set; } = new();
         public Inventory.Core.Inventory Inventory { get; private set; } = new();
+        [SerializeField] private Sprite defaultMaskIcon;
 
         private void OnEnable()
         {
@@ -36,6 +37,16 @@ namespace Player.Core
         {
             _currentActiveSlotType = SlotType.First;
             OnMaskChange?.Invoke(_currentActiveSlotType, null);
+            if (Inventory.TryGetFirstEmptySlot(out var slot))
+            {
+                var mask = new Mask.Core.Mask(
+                    new Mask.Core.MaskPerk(StatType.Default, 0),
+                    slot.SlotType, LaserType.Default
+                );
+
+                mask.RegisterEvents();
+                Inventory.Add(slot.SlotType, mask, defaultMaskIcon);
+            }
         }
 
         private void OnDisable()

@@ -8,6 +8,11 @@ public class Laser : MonoBehaviour
         if(other.TryGetComponent<EnemyTest>(out EnemyTest enemy))
         {
             enemy.DealDamage(10);
-        }    
+        } 
+
+        if(other.TryGetComponent<MaskChest>(out MaskChest chest))
+        {
+            chest.SpawnMask();
+        }   
     }
 }

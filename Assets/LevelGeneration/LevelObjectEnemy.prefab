@@ -1265,7 +1265,7 @@ MonoBehaviour:
     min: {x: -6.000001, y: -0.0000003874618, z: -26}
     size: {x: 12.000002, y: 12.260739, z: 52}
   builders: []
-  unpacked: 1
+  unpacked: 0
   alwaysDraw: 0
   drawGeneratedSpline: 1
   drawGeneratedSamples: 1
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   drawEntranceAndExit: 1
   drawBounds: 1
   drawCustomPaths: 1
-  editorChildCount: 35
+  editorChildCount: 36
 --- !u!1 &742016125263801077
 GameObject:
   m_ObjectHideFlags: 0
@@ -4570,7 +4570,7 @@ Transform:
   m_GameObject: {fileID: 8750324747394453172}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4589,7 +4589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1610409079357243718, guid: f65bee0dba68de54ebc507a0771b2a92, type: 3}
-  chestPrefab: {fileID: 3802603034694488032, guid: fbf5e0ae5dc7f48b88f9e8cacfb06c20, type: 3}
+  chestPrefab: {fileID: 1894678831085007227, guid: fc0481adb6472d14cb17898476485684, type: 3}
 --- !u!1001 &1945469785350762349
 PrefabInstance:
   m_ObjectHideFlags: 0
