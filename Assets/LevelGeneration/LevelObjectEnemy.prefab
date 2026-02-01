@@ -4598,33 +4598,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4401707558163036562}
     m_Modifications:
+    - target: {fileID: 958420416880831053, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
+      propertyPath: m_Range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 958420416880831053, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
+      propertyPath: m_Intensity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632378240971529408, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632378240971529408, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.443
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632378240971529408, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.373
+      objectReference: {fileID: 0}
     - target: {fileID: 3852525971437769100, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_Name
       value: torch
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5229106
+      value: 4.2550435
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5229106
+      value: 4.2550435
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5229106
+      value: 4.2550435
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.861
+      value: -5.85
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.811
+      value: 3.3824
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1732256
+      value: 3.1909
       objectReference: {fileID: 0}
     - target: {fileID: 4484806057456274230, guid: 62ba09e957a3d434db1d5c372a7c48b4, type: 3}
       propertyPath: m_LocalRotation.w

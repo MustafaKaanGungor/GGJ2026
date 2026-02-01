@@ -1,5 +1,7 @@
 using System.Collections;
 using Dreamteck.Forever;
+using Player.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTest : MonoBehaviour
@@ -48,5 +50,14 @@ public class EnemyTest : MonoBehaviour
     public void TriggerAttackAnim()
     {
         enemyAnimator.SetTrigger("Attack");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        enemycollider.enabled = false;
+        var playerBehaviour = other.gameObject.GetComponent<PlayerBehaviour>();
+        if (playerBehaviour == null) return;
+        
+        playerBehaviour.Stats.Damage(1);
     }
 }

@@ -45,6 +45,8 @@ namespace Player.Core
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.D)) Stats.Damage(10);
+            
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 _currentActiveSlotType = SlotType.First;
