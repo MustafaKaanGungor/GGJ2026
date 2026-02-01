@@ -52,6 +52,7 @@ public class EnemyTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        enemycollider.enabled = false;
         var playerBehaviour = other.gameObject.GetComponent<PlayerBehaviour>();
         if (playerBehaviour == null) return;
         
