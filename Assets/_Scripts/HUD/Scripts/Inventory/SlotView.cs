@@ -20,15 +20,12 @@ namespace HUD.Inventory
         private Color[] _defaultColors;
         private Sprite _defaultIcon;
 
-        private void OnEnable()
+        private void Start()
         {
             player.Inventory.OnAdd += OnAdd;
             player.Inventory.OnRemove += OnRemove;
             player.OnMaskChange += OnMaskChange;
-        }
 
-        private void Start()
-        {
             _defaultColors = new Color[toBeUpdated.Length];
             for (var i = 0; i < _defaultColors.Length; i++) _defaultColors[i] = toBeUpdated[i].color;
             _defaultIcon = iconView.sprite;
