@@ -9,6 +9,8 @@ namespace Mask.Core
     [DisallowMultipleComponent]
     public class MaskBehaviour : MonoBehaviour
     {
+        public static event Action OnMaskClaimWhenFull;
+        
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public StatType Stat { get; private set; }
         [field: SerializeField] public byte Boost { get; private set; }
@@ -34,6 +36,10 @@ namespace Mask.Core
 
                 mask.RegisterEvents();
                 inventory.Add(slot.SlotType, mask, Icon);
+            }
+            else
+            {
+                OnMaskClaimWhenFull?.Invoke();
             }
         }
     }
