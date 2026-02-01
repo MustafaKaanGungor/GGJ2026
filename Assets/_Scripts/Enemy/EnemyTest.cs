@@ -30,21 +30,13 @@ public class EnemyTest : MonoBehaviour
     }
     public void DealDamage(float amount)
     {
+        
         health -= amount;
+        Debug.Log("hasar alıyor: " + health);
         if(health <= 0)
         {
             gameObject.SetActive(false);
-            /*meshRenderer.enabled = false;
-        enemycollider.enabled = false;
-            StartCoroutine(Dead());*/
         }
-    }
-
-    private IEnumerator Dead()
-    {
-        
-        yield return new WaitForSeconds(1f); 
-        
     }
 
     public void TriggerAttackAnim()
@@ -54,10 +46,11 @@ public class EnemyTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        enemycollider.enabled = false;
+        
         var playerBehaviour = other.gameObject.GetComponent<PlayerBehaviour>();
         if (playerBehaviour == null) return;
         
-        playerBehaviour.Stats.Damage(1);
+        playerBehaviour.Stats.Damage(5);
+        enemycollider.enabled = false;
     }
 }
